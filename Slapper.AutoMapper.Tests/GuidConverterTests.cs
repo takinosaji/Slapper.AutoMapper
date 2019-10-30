@@ -16,5 +16,19 @@ namespace Slapper.Tests.ConvertersTests
             // Act + Assert
             Assert.True(this.converter.CanConvert(null, targetType)); // Input value does not matter, null is enough for the test.
         }
+
+        [TestCase(typeof(Guid))]
+        [TestCase(typeof(Guid?))]
+        public void Can_Convert_Guid_To_Guid(Type targetType)
+        {
+            //Arrange
+            var guid = Guid.NewGuid();
+
+            // Act
+            var result = this.converter.Convert(guid, targetType);
+
+            //Assert
+            Assert.That( Equals(guid, result));
+        }
     }
 }
